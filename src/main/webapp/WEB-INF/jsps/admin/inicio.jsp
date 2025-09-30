@@ -17,7 +17,7 @@
 </div>
 <div>
     <a href="crearVino">Registrar un nuevo producto</a>
-    <a href="listarLibros">Gestionar productos</a>
+    <a href="listarVinos">Gestionar productos</a>
     <a href="">Registrar un nuevo usuario</a>
     <a href="">Gestionar usuario</a>
 
