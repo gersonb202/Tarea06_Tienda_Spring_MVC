@@ -30,6 +30,7 @@ public class VinosDAOImpl implements VinosDAO {
     public void registrarVino(Vino vino) {
         HashMap<String, Object> valores = new HashMap<>();
         valores.put("nombre", vino.getNombre());
+        valores.put("precio", vino.getPrecio());
         valores.put("anio", vino.getAnio());
         valores.put("region", vino.getRegion());
         valores.put("tipo", vino.getTipo());
