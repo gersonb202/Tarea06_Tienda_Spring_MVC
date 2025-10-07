@@ -38,7 +38,7 @@ public class VinosDAOImpl implements VinosDAO {
     }
 
     @Override
-    public List<Vino> obtenerVino() {
+    public List<Vino> obtenerVinos() {
         List<Vino> vinos = this.jdbcTemplate.query(ConstantesSQL.SQL_OBTENER_VINOS, new VinosMapper());
         return vinos;
     }
