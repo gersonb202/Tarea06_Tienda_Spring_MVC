@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ServiciosImpl implements ServiciosUsuarios {
+public class ServiciosUsuariosImpl implements ServiciosUsuarios {
 
     // Entender bien el @Autowired
      @Autowired

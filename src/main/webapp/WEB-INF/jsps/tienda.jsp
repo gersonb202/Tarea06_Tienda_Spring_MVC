@@ -148,7 +148,7 @@
 </head>
 <body>
     <header class="header">
-        <h1>🍷 Vinoteca Premium</h1>
+        <h1>🍷 Vinoteca Baque</h1>
         <p>Selección exclusiva de vinos de calidad</p>
     </header>
 
@@ -167,6 +167,75 @@
                 <span class="wine-icon">🥂</span>
             </div>
         </div>
+
+        <div id="contenedor"></div>
+
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/mustache.js"></script>
+        <script type="text/javascript">
+            var plantilla_registro = ""
+            var plantilla_login = ""
+            var plantilla_libros = ""
+
+            $.get("plantillas_mustache/registrarme.html", function(valor){
+                plantilla_registro = valor
+            })
+
+            $.get("plantillas_mustache/login.html", function(valor){
+                plantilla_login = valor
+            })
+
+            $.get("plantillas_mustache/libros.html", function(valor){
+                plantilla_libros = valor
+            })
+
+            function obtenerVinos(){
+                $.get("vinosREST/obtener", function(valor){
+                    var vinos = JSON.parse(valor)
+                    console.log(vinos)
+                    var info = Mustache.render(plantilla_libros, {xxx:"hola desde mustache", array_vinos: vinos})
+                    $("#contenedor").html(info)
+                })
+                $("#contendor").html("cargando...");
+            }
+
+            function mostrarLogin(){
+                $("#contenedor").html(plantilla_login)
+            }
+
+            function mostrarRegistro(){
+                $("#contenedor").html(plantilla_registro)
+                // Vamos a interceptar el envío de formulario
+                $("#form_registro").submit(function(evento){
+                    evento.preventDefault()
+                    //alert("Se intenta enviar el formulario")
+                    // Recoger los datos del form y mandarlos a UsuariosREST
+                    var nombre = $("#nombre").val()
+                    var apellido = $("#apellido").val()
+                    var edad = $("#edad").val()
+                    var pais = $("#pais").val()
+                    var email = $("#email").val()
+                    var pass = $("#pass").val()
+                    $.post("usuariosREST/registrar", {
+                        nombre: nombre,
+                        apellido: apellido,
+                        edad: edad,
+                        pais: pais,
+                        email: email,
+                        pass: pass
+                    }).done(function(res){
+                        alert(res)
+                    })
+                })
+            }
+
+            $("#enlace_productos").click(obtenerLibros)
+            $("#enlace_identificarme").click(mostrarLogin)
+            $("#enlace_registrarme").click(mostrarRegistro)
+
+            obtenerLibros()
+
+        </script>
     </main>
 
     <footer class="footer">
