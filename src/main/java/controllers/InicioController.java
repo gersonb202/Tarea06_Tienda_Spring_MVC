@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class InicioController {
 
-    @RequestMapping("/inicio")
+    @RequestMapping("inicio")
     public String incio(){return "tienda";}
 
 }

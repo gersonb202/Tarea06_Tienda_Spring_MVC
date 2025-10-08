@@ -10,5 +10,6 @@ public interface VinosDAO {
     List<Vino> obtenerVinos();
     void borrarVino(long id);
     void actualizarVino(Vino vino);
+    Vino obtenerVinoId(long id);
 
 }

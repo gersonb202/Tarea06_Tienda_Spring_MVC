@@ -1,14 +1,29 @@
 package modelo;
 
+
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+// Que son las entidades?
+@Entity(name = "vinos")
 public class Vino {
 
+    @Id
+    @GeneratedValue
     private long id;
+
     private String nombre;
     private Double precio;
     private int anio;
     private String region;
     private String tipo;
     private Double alcohol;
+    @Transient
+    private MultipartFile imagen;
 
     public Vino() {
     }
@@ -86,6 +101,14 @@ public class Vino {
 
     public void setAlcohol(Double alcohol) {
         this.alcohol = alcohol;
+    }
+
+    public MultipartFile getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(MultipartFile imagen) {
+        this.imagen = imagen;
     }
 
     @Override
