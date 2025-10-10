@@ -18,6 +18,6 @@ public class VinosMapper implements RowMapper<Vino> {
         vino.setRegion(rs.getString("region"));
         vino.setTipo(rs.getString("tipo"));
         vino.setAlcohol(rs.getDouble("alcohol"));
-        return null;
+        return vino;
     }
 }

@@ -29,7 +29,7 @@ public class ServiciosUsuariosImpl implements ServiciosUsuarios {
         // Entender criteria
         Criteria c = this.sessionFactory.getCurrentSession().createCriteria(Usuario.class);
         List<Usuario> usuarios = c.list();
-        return Collections.emptyList();
+        return usuarios;
     }
 
     @Override

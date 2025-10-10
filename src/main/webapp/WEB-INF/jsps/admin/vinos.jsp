@@ -10,23 +10,34 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
 </head>
 <body>
-
-Gestión de los vinos de la tienda: <br>
-<c:forEach items="vinos" var="vino">
-    <div style="margin: 10px">
-        <img src="subidas/${vino.id}.jpg" height="80px"/> <br>
-        Nombre: ${vino.nombre} <br>
-        Precio: ${vino.precio} <br>
-        Añada: ${vino.anio} <br>
-        Región: ${vino.region} <br>
-        Tipo: ${vino.tipo} <br>
-        Alcohol: ${vino.alcohol} <br>
-        <a onclick="return confirm('¿Estás seguro?')" href="borrarVino?id=${vino.id}">Borrar</a>
-        <a href="modificarVino?id=${vino.id}">Editar</a>
+<div class="contenedor-principal">
+    <jsp:include page="menu.jsp"></jsp:include>
+    <div class="contenido">
+        <h2>Gestión de Vinos</h2>
+        <div class="grid-items">
+            <c:forEach items="${vinos}" var="vino">
+                <div class="item-card">
+                    <img src="subidas/${vino.id}.jpg" alt="${vino.nombre}"/>
+                    <div class="item-info">
+                        <div><strong>Nombre:</strong> ${vino.nombre}</div>
+                        <div><strong>Precio:</strong> ${vino.precio}€</div>
+                        <div><strong>Añada:</strong> ${vino.anio}</div>
+                        <div><strong>Región:</strong> ${vino.region}</div>
+                        <div><strong>Tipo:</strong> ${vino.tipo}</div>
+                        <div><strong>Alcohol:</strong> ${vino.alcohol}%</div>
+                    </div>
+                    <div class="botones">
+                        <a class="btn btn-editar" href="modificarVino?id=${vino.id}">Editar</a>
+                        <a class="btn btn-borrar" onclick="return confirm('¿Estás seguro?')" href="borrarVino?id=${vino.id}">Borrar</a>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
     </div>
-</c:forEach>
+</div>
 
 </body>
 </html>
