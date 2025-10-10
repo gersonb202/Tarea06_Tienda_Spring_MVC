@@ -23,6 +23,7 @@ public class VinosDAOImpl implements VinosDAO {
         this.dataSource = dataSource;
         this.simpleInsert = new SimpleJdbcInsert(dataSource);
         this.simpleInsert.setTableName("vinos");
+        this.simpleInsert.usingGeneratedKeyColumns("id");
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

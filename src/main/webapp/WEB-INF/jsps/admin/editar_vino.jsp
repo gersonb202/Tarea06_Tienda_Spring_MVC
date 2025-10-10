@@ -1,34 +1,32 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Gerson
-  Date: 30/09/2025
-  Time: 20:56
+  User: gbaque
+  Date: 10/10/2025
+  Time: 16:13
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
-<!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Nuevo Vino - Vinoteca</title>
+    <title>Title</title>
 </head>
 <body>
+
     <jsp:include page="menu.jsp"></jsp:include>
+    <div>
+        Editar productos:
+    </div>
 
-    Introduce los datos del nuevo vino: <br>
-
-    <springform:form modelAttribute="vino" method="post" enctype="multipart/form-data" action="guardarNuevoVino">
+    <springform:form modelAttribute="vinoEditar" method="post" action="guardarCambiosVino">
         Nombre: <springform:input path="nombre"/> <br>
         Precio: <springform:input path="precio"/> <br>
         Añada: <springform:input path="anio"/> <br>
         Region: <springform:input path="region"/> <br>
         Tipo: <springform:input path="tipo"/> <br>
         Alcohol: <springform:input path="alcohol"/> <br>
-        <springform:input type="file" path="imagen"/> <br>
-        <input type="submit" value="Registar"/>
-
+        <springform:hidden path="id"/>
+        <input type="submit" value="Guardar Cambios"/>
     </springform:form>
 
 </body>
