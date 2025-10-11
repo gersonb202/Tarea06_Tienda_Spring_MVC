@@ -26,11 +26,16 @@
     <a id="" onclick="alert('por hacer...')" href="#">MIS PEDIDOS</a> <br>
 </div>
 
+<div id="login_usuario">Usuario no identificado</div>
 <div id="contenedor"></div>
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/mustache.js"></script>
     <script type="text/javascript">
+
+        // Variables goblales
+        var nombre_login = ""
+
         var plantilla_registro = ""
         var plantilla_login = ""
         var plantilla_vinos = ""
@@ -47,18 +52,47 @@
             plantilla_vinos = valor
         })
 
+        function comprar_producto(){
+            if(nombre_login == ""){
+                alert("Tienes que identificarte para comprar productos")
+            }else{
+                var id_producto = $(this).attr("id-producto")
+                alert("Añadir producto de id: " + id_producto + " al carrito")
+            }
+        }// end comprar_producto
+
         function obtenerVinos(){
             $.get("vinosREST/obtener", function(valor){
                 var vinos = JSON.parse(valor)
                 console.log(vinos)
                 var info = Mustache.render(plantilla_vinos, {xxx:"hola desde mustache", array_vinos: vinos})
                 $("#contenedor").html(info)
+                $(".enlace_comprar_producto").click(comprar_producto)
             })
             $("#contenedor").html("cargando...");
         }
 
         function mostrarLogin(){
             $("#contenedor").html(plantilla_login)
+            $("#form_login").submit(function(evento){
+                evento.preventDefault()
+                var email = $("#email").val()
+                var pass = $("#pass").val()
+                $.post("usuariosREST/login", {
+                    email: email,
+                    pass: pass
+                }).done(function (res){
+                    var parte1 = res.split(",")[0]
+                    var parte2 = res.split(",")[1]
+                    if(parte1 == "ok"){
+                        alert("Bienvenido " + parte2 + " ya puedes comprar")
+                        nombre_login = parte2
+                        $("#login_usuario").html("Hola " + parte2)
+                    }else{
+                        alert(res)
+                    }
+                })
+            })
         }
 
         function mostrarRegistro(){
