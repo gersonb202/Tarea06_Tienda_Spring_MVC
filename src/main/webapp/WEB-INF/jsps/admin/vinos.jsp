@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
 </head>
 <body>
 <div class="contenedor-principal">
