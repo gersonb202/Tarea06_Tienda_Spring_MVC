@@ -18,7 +18,12 @@
         }
     </style>
 </head>
-<body>
-    <jsp:include page="menu.jsp"></jsp:include>
+<body class="bg-cream min-h-screen">
+<jsp:include page="menu.jsp"></jsp:include>
+<div class="container mx-auto px-6 py-8">
+    <div class="bg-white rounded-xl shadow-lg p-8 border-2 border-vino-light">
+        <h2 class="text-3xl font-bold text-vino mb-6">Bienvenido al Panel de Administración</h2>
+    </div>
+</div>
 </body>
 </html>
